@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="main w-full min-h-screen bg-zinc-900 text-white">
+      <h1 class="text-white text-3xl font-bold p-6">Your Cart</h1>
+      <div class="cart-items flex flex-col items-center">
+        <% if (cartItems.length === 0) { %>
+        <p class="text-xl">Your cart is empty</p>
+        <% } else { %> <% cartItems.forEach(function(item) { %>
+        <div class="cart-item bg-zinc-700 w-80 p-4 mb-4 rounded-lg text-white">
+          <img
+            src="<%= item.imageLink %>"
+            alt="<%= item.title %>"
+            class="w-24"
+          />
+          <h2 class="text-xl font-bold"><%= item.title %></h2>
+          <p>Author: <%= item.author %></p>
+          <p>Price: ₹75</p>
+          <p>Quantity: <%= item.quantity %></p>
+          <form action="/books/removeFromCart/<%= item.id %>" method="POST">
+            <button
+              type="submit"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Remove
+            </button>
+          </form>
+        </div>
+        <% }); %>
+        <div class="total text-2xl mt-6">
+          Total Items: <%= cartItems.length %>
+        </div>
+        <% } %>
+      </div>
+      <a href="/books/homepage">
+        <button class="bg-blue-800 w-24 p-3 rounded-md ml-28 hover:bg-blue-500">
+          back
+        </button></a
+      >
+    </div>
+  </body>
+</html>

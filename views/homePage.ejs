@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomePage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="main w-full min-h-screen bg-zinc-900">
+      <nav class="flex gap-10 text-white mx-10 pt-5 text-3xl">
+        <a href="/books/homePage" class="hover:text-blue-500 font-bold">Home</a>
+
+        <a href="/books/cart" class="hover:text-blue-500 font-bold">cart</a>
+      </nav>
+      <div class="books flex flex-wrap gap-10 mt-6 justify-center">
+        <% data.forEach (function(val){%>
+        <div
+          class="book bg-zinc-600 w-60 rounded-md p-4 font-mono hover:scale-105 transition-transform duration-2000"
+        >
+          <a href="/books/details/<%= val.id %>">
+            <img src="<%=val.imageLink %>" alt="" class="w-26" />
+            <h2 class="text-indigo-50 text-2xl pt-2"><%= val.author %></h2>
+            <p class="text-slate-300 text-md pt-2"><%= val.title %></p>
+            <p class="text-amber-600 text-lg pt-2">₹75</p>
+          </a>
+        </div>
+        <%}) %>
+      </div>
+    </div>
+  </body>
+</html>
